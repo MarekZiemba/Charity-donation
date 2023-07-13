@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 @Table(name = "institutions")
@@ -24,5 +25,16 @@ public class Institution {
 
     @Size(max = 300)
     private String description;
+
+    @OneToMany(mappedBy = "institution")
+    @ToString.Exclude
+    private Set<Donation> donations;
+
+    public void removeAllDonations() {
+        for (Donation donation : donations) {
+            donation.setInstitution(null);
+        }
+        donations.clear();
+    }
 
 }

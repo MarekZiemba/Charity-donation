@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
+import pl.coderslab.charity.entity.Institution;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -37,12 +38,14 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
     List<Donation> findByCategory(@Param("category") Category category);
 
     @EntityGraph(attributePaths = {"category", "institution"})
-    List<Donation> findByCategory(String name);
+    List<Donation> findByCategoryName(String name);
 
     @EntityGraph(attributePaths = {"category", "institution"})
-    List<Donation> findByInstitution(@Param("institution") Category category);
+    List<Donation> findByInstitution(@Param("institution") Institution institution);
 
     @EntityGraph(attributePaths = {"category", "institution"})
     List<Donation> findByInstitutionName(String name);
+
+    Donation findById(Class<Donation> donationClass, Long id);
 
 }

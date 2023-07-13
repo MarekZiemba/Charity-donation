@@ -13,9 +13,7 @@ public class DonationController {
 
     private final DonationRepository donationRepository;
 
-//    public DonationController(DonationRepository donationRepository) {
-//        this.donationRepository = donationRepository;
-//    }
+
 
 
 
