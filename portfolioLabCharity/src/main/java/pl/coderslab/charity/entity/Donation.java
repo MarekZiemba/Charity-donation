@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -33,6 +34,7 @@ public class Donation {
 
     private LocalTime pickupTime;
 
+    @Size(max = 2000)
     private String pickUpComment;
 
     @ManyToOne(fetch = FetchType.LAZY)

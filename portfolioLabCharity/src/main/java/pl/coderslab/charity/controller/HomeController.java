@@ -31,7 +31,7 @@ public class HomeController {
         model.addAttribute("totalQuantity", totalQuantity);
         model.addAttribute("totalDonations", totalDonations);
 
-        return "summary";
+        return "index";
     }
 
 }

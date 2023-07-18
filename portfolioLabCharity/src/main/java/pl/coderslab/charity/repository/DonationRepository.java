@@ -28,10 +28,10 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
     @EntityGraph(attributePaths = {"category", "institution"})
     List<Donation> findByQuantityBetween(int quantity1, int quantity2);
 
-    @EntityGraph(attributePaths = {"patient", "treatment", "specialist"})
+    @EntityGraph(attributePaths = {"category", "institution"})
     List<Donation> findByPickUpDateAndPickupTimeOrderByPickupTime(LocalDate pickUpDate, LocalTime pickupTime);
 
-    @EntityGraph(attributePaths = {"patient", "treatment", "specialist"})
+    @EntityGraph(attributePaths = {"category", "institution"})
     List<Donation> findByPickUpDateBetweenOrderByPickUpDate(LocalDate pickUpDate1, LocalDate pickUpDate2);
 
     @EntityGraph(attributePaths = {"category", "institution"})
