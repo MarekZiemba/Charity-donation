@@ -5,13 +5,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import pl.coderslab.charity.entity.Donation;
+import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.repository.DonationRepository;
+import pl.coderslab.charity.service.InstitutionService;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Controller
-public class HomeController {
+public class HomeFormController {
 
     private final DonationRepository donationRepository;
+    private final InstitutionService institutionService;
 
 //    public DonationController(DonationRepository donationRepository) {
 //        this.donationRepository = donationRepository;
@@ -27,11 +32,15 @@ public class HomeController {
 
         // Suma wszystkich donations (liczba wpisów)
         long totalDonations = donationRepository.count();
-
         model.addAttribute("totalQuantity", totalQuantity);
         model.addAttribute("totalDonations", totalDonations);
 
+        // Pobierz listę instytucji z serwisu InstitutionService
+        List<Institution> institutions = institutionService.findAll();
+        model.addAttribute("institutions", institutions);
+
         return "index";
     }
+
 
 }

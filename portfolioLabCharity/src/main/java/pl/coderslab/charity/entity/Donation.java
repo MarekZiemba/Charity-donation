@@ -32,7 +32,7 @@ public class Donation {
 
     private LocalDate pickUpDate;
 
-    private LocalTime pickupTime;
+    private LocalTime pickUpTime;
 
     @Size(max = 2000)
     private String pickUpComment;
