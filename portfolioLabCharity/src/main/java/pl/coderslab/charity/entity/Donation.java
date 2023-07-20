@@ -45,6 +45,4 @@ public class Donation {
     @JoinColumn(name = "institution_id")
     private Institution institution;
 
-
-
 }

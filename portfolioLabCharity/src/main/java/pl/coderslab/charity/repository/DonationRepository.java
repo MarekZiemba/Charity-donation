@@ -14,6 +14,10 @@ import java.util.Optional;
 
 public interface DonationRepository extends JpaRepository<Donation, Long> {
 
+    @EntityGraph(attributePaths = {"category", "institution"})
+    List<Donation> totalQuantityFindAll(int totalQuantity);
+
+
     @Override
     @EntityGraph(attributePaths = {"category", "institution"})
     List<Donation> findAll();
@@ -29,7 +33,7 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
     List<Donation> findByQuantityBetween(int quantity1, int quantity2);
 
     @EntityGraph(attributePaths = {"category", "institution"})
-    List<Donation> findByPickUpDateAndPickupTimeOrderByPickupTime(LocalDate pickUpDate, LocalTime pickupTime);
+    List<Donation> findByPickUpDateAndPickUpTimeOrderByPickUpTime(LocalDate pickUpDate, LocalTime pickupTime);
 
     @EntityGraph(attributePaths = {"category", "institution"})
     List<Donation> findByPickUpDateBetweenOrderByPickUpDate(LocalDate pickUpDate1, LocalDate pickUpDate2);
@@ -47,5 +51,7 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
     List<Donation> findByInstitutionName(String name);
 
     Donation findById(Class<Donation> donationClass, Long id);
+
+
 
 }

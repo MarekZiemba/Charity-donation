@@ -19,6 +19,10 @@ public class DonationService {
 
     public final DonationRepository donationRepository;
 
+    public List <Donation> totalQuantity (int quantity) {
+        return donationRepository.totalQuantityFindAll(quantity);
+    }
+
     public void save(Donation donation) {
         donationRepository.save(donation);
     }
@@ -48,7 +52,7 @@ public class DonationService {
     }
 
     public List<Donation> findByPickUpDateAndPickupTimeOrderByPickupTime(LocalDate pickUpDate, LocalTime pickupTime) {
-        return donationRepository.findByPickUpDateAndPickupTimeOrderByPickupTime(pickUpDate, pickupTime);
+        return donationRepository.findByPickUpDateAndPickUpTimeOrderByPickUpTime(pickUpDate, pickupTime);
     }
 
     public List<Donation> findByPickUpDateBetweenOrderByPickUpDate(LocalDate pickUpDate1, LocalDate pickUpDate2) {
