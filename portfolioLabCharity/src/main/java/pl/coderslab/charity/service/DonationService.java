@@ -19,8 +19,12 @@ public class DonationService {
 
     public final DonationRepository donationRepository;
 
-    public List <Donation> totalQuantity (int quantity) {
-        return donationRepository.totalQuantityFindAll(quantity);
+    public int totalQuantity() {
+        return donationRepository.sumAllQuantities();
+    }
+
+    public long totalDonations() {
+        return donationRepository.countAllDonations();
     }
 
     public void save(Donation donation) {

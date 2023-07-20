@@ -2,6 +2,7 @@ package pl.coderslab.charity.repository;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
@@ -14,9 +15,11 @@ import java.util.Optional;
 
 public interface DonationRepository extends JpaRepository<Donation, Long> {
 
-    @EntityGraph(attributePaths = {"category", "institution"})
-    List<Donation> totalQuantityFindAll(int totalQuantity);
+    @Query("SELECT SUM(d.quantity) FROM Donation d")
+    int sumAllQuantities();
 
+    @Query("SELECT COUNT(d) FROM Donation d")
+    long countAllDonations();
 
     @Override
     @EntityGraph(attributePaths = {"category", "institution"})

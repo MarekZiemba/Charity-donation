@@ -4,10 +4,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
-import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.service.InstitutionService;
+import pl.coderslab.charity.service.DonationService;
 
 import java.util.List;
 
@@ -15,8 +14,8 @@ import java.util.List;
 @Controller
 public class HomeFormController {
 
-    private final DonationRepository donationRepository;
     private final InstitutionService institutionService;
+    private final DonationService donationService;
 
 //    public DonationController(DonationRepository donationRepository) {
 //        this.donationRepository = donationRepository;
@@ -25,15 +24,17 @@ public class HomeFormController {
     @GetMapping("/")
     public String showSummary(Model model) {
         // Suma wartości liczbowych pola "quantity"
-        int totalQuantity = donationRepository.findAll()
-                .stream()
-                .mapToInt(Donation::getQuantity)
-                .sum();
+        int totalQuantity = donationService.totalQuantity();
+        model.addAttribute("totalQuantity", totalQuantity);
+//        int totalQuantity = donationRepository.findAll()
+//                .stream()
+//                .mapToInt(Donation::getQuantity)
+//                .sum();
 
         // Suma wszystkich donations (liczba wpisów)
-        long totalDonations = donationRepository.count();
-        model.addAttribute("totalQuantity", totalQuantity);
+        long totalDonations = donationService.totalDonations();
         model.addAttribute("totalDonations", totalDonations);
+//        long totalDonations = donationRepository.count();
 
         // Pobierz listę instytucji z serwisu InstitutionService
         List<Institution> institutions = institutionService.findAll();

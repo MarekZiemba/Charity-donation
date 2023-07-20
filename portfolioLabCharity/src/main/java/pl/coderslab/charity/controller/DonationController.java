@@ -17,10 +17,6 @@ import java.util.List;
 @Controller
 public class DonationController {
 
-    private final DonationRepository donationRepository;
-
-
-
     private final DonationService donationService;
     private final InstitutionService institutionService;
     private final CategoryService categoryService;
@@ -91,7 +87,6 @@ public class DonationController {
         final List<Donation> donations = donationService.findByCategoryName(name);
         return donations.toString();
     }
-    
 
     @DeleteMapping(path = "/donation/{id}")
     void deleteById(@PathVariable Long id) {
