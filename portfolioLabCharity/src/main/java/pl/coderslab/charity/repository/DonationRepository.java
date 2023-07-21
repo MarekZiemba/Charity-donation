@@ -55,6 +55,4 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
 
     Donation findById(Class<Donation> donationClass, Long id);
 
-
-
 }
