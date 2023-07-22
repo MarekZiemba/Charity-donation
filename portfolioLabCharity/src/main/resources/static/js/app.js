@@ -164,6 +164,78 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
+
+      // Wyświetl podsumowanie w elemencie <div class="summary">
+      if (this.currentStep === 5) {
+        const formData = this.gatherFormData();
+        const summaryElement = document.querySelector(".summary");
+
+      // wyświetlenie danych w podsumowaniu
+        summaryElement.innerHTML = `
+        <div class="form-section">
+            <h4>Oddajesz:</h4>
+            <ul>
+                <li>
+                    <span class="icon icon-bag"></span>
+                    <span class="summary--text">Worki: ${formData.quantity} w tym: ${formData.categories.join(", ")}</span>
+                </li>
+                <li>
+                    <span class="icon icon-hand"></span>
+                    <span class="summary--text">Dla ${formData.institution}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="form-section form-section--columns">
+            <div class="form-section--column">
+                <h4>Adres odbioru:</h4>
+                <ul>
+                    <li>${formData.street}</li>
+                    <li>${formData.city}</li>
+                    <li>${formData.zipCode}</li>
+                    <li>${formData.phone}</li>
+                </ul>
+            </div>
+
+            <div class="form-section--column">
+                <h4>Termin odbioru:</h4>
+                <ul>
+                    <li>${formData.pickUpDate}</li>
+                    <li>${formData.pickUpTime}</li>
+                    <li>${formData.pickUpComment}</li>
+                </ul>
+            </div>
+        </div>
+    `;
+      }
+    }
+
+    gatherFormData() {
+      const formData = {};
+      const form = this.$form.querySelector("form");
+
+      // Pobierz dane z kroków formularza i zapisz w obiekcie formData
+      formData.quantity = form.querySelector('input[name="quantity"]').value;
+      formData.street = form.querySelector('input[name="street"]').value;
+      formData.city = form.querySelector('input[name="city"]').value;
+      formData.zipCode = form.querySelector('input[name="zipCode"]').value;
+      formData.phone = form.querySelector('input[name="phone"]').value;
+
+      // Pobierz dane z wybranej daty i czasu odbioru
+      formData.pickUpDate = form.querySelector('input[name="pickUpDate"]').value;
+      formData.pickUpTime = form.querySelector('input[name="pickUpTime"]').value;
+
+      // Pobierz dane z komentarza
+      formData.pickUpComment = form.querySelector('textarea[name="pickUpComment"]').value;
+
+      // Pobierz dane z wybranych kategorii (nazwy)
+      formData.categories = [];
+      form.querySelectorAll('input[name="categories"]:checked').forEach(checkbox => {
+        formData.categories.push(checkbox.parentElement.querySelector('.description').innerText.trim());
+      });
+
+      // Pobierz dane z wybranej instytucji (nazwa)
+      formData.institution = form.querySelector('input[name="institution"]:checked').parentElement.querySelector('.title').innerText.trim();
+      return formData;
     }
 
   }

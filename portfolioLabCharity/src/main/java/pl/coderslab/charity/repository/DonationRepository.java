@@ -22,35 +22,28 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
     long countAllDonations();
 
     @Override
-    @EntityGraph(attributePaths = {"category", "institution"})
+//    @EntityGraph(attributePaths = {"category", "institution"})
     List<Donation> findAll();
 
     @Override
-    @EntityGraph(attributePaths = {"category", "institution"})
     Optional<Donation> findById(Long id);
 
-    @EntityGraph(attributePaths = {"category", "institution"})
     List<Donation> findByQuantity(int quantity);
 
-    @EntityGraph(attributePaths = {"category", "institution"})
     List<Donation> findByQuantityBetween(int quantity1, int quantity2);
 
-    @EntityGraph(attributePaths = {"category", "institution"})
     List<Donation> findByPickUpDateAndPickUpTimeOrderByPickUpTime(LocalDate pickUpDate, LocalTime pickupTime);
 
-    @EntityGraph(attributePaths = {"category", "institution"})
     List<Donation> findByPickUpDateBetweenOrderByPickUpDate(LocalDate pickUpDate1, LocalDate pickUpDate2);
 
-    @EntityGraph(attributePaths = {"category", "institution"})
-    List<Donation> findByCategory(@Param("category") Category category);
+//        @EntityGraph(attributePaths = {"category", "institution"})
+    List<Donation> findByCategoriesContains(@Param("category") Category category);
 
-    @EntityGraph(attributePaths = {"category", "institution"})
-    List<Donation> findByCategoryName(String name);
+//        @EntityGraph(attributePaths = {"category", "institution"})
+    List<Donation> findByCategoriesName(String name);
 
-    @EntityGraph(attributePaths = {"category", "institution"})
     List<Donation> findByInstitution(@Param("institution") Institution institution);
 
-    @EntityGraph(attributePaths = {"category", "institution"})
     List<Donation> findByInstitutionName(String name);
 
     Donation findById(Class<Donation> donationClass, Long id);

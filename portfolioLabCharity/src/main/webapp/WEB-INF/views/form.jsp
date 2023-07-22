@@ -57,24 +57,22 @@
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-        <form:form method="post" modelAttribute="donation">
-<%--        <form action="form-confirmation.html" method="post">--%>
+        <form:form method="post" modelAttribute="donations">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
 
-                <div class="form-group form-group--checkbox">
-                    <c:forEach var="category" items="${categories}">
-                        <div class="form-group form-group--checkbox">
-                            <label>
-                                <form:checkboxes items="${categories}" path="categories" itemLabel="name" itemValue="id" delimiter="," />
+                <c:forEach var="category" items="${categories}">
+                    <div class="form-group form-group--checkbox">
+                        <label>
+                            <input type="checkbox" name="categories" id="categories" value="${category.id}" />
 
-                                <span class="checkbox"></span>
-                                <span class="description">${category.name}</span>
-                            </label>
-                        </div>
-                    </c:forEach>
-                </div>
+                            <span class="checkbox"></span>
+                            <span class="description">${category.name}</span>
+                        </label>
+                    </div>
+                </c:forEach>
+                <input type="hidden" name="categoryNames" id="categoryNames" value="${category.name}" />
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>
@@ -99,31 +97,30 @@
             </div>
 
 
-            <!-- STEP 4 -->
+            <!-- STEP 3 -->
             <div data-step="3">
                 <h3>Wybierz organizacje, której chcesz pomóc:</h3>
                 <c:forEach var="institution" items="${institutions}">
                     <div class="form-group form-group--checkbox">
                         <label>
-                            <input type="radio" name="organization" value="old" />
+                            <input type="radio" name="institution" id="institution" value="${institution.id}" />
                             <span class="checkbox radio"></span>
                             <span class="description">
-                      <div class="title">${institution.name}</div>
-                      <div class="subtitle">
-                          ${institution.description}
-
-                      </div>
-                    </span>
+                                <div class="title">${institution.name}</div>
+                                <div class="subtitle">${institution.description}</div>
+                            </span>
                         </label>
                     </div>
                 </c:forEach>
+                <input type="hidden" name="institutionName" id="institutionName" value="${institution.name}" />
+
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
                     <button type="button" class="btn next-step">Dalej</button>
                 </div>
             </div>
 
-            <!-- STEP 5 -->
+            <!-- STEP 4 -->
             <div data-step="4">
                 <h3>Podaj adres oraz termin odbioru rzeczy przez kuriera:</h3>
 
@@ -175,50 +172,14 @@
                 </div>
             </div>
 
-            <!-- STEP 6 -->
+            <!-- STEP 5 -->
             <div data-step="5">
                 <h3>Podsumowanie Twojej darowizny</h3>
 
                 <div class="summary">
-                    <div class="form-section">
-                        <h4>Oddajesz:</h4>
-                        <ul>
-                            <li>
-                                <span class="icon icon-bag"></span>
-                                <span class="summary--text"
-                                >${quantity} worki ${category.name}</span
-                                >
-                            </li>
 
-                            <li>
-                                <span class="icon icon-hand"></span>
-                                <span class="summary--text"
-                                >Dla ${institution.name}</span
-                                >
-                            </li>
-                        </ul>
-                    </div>
+                        <%--                    Here will appear summary section, generated with Java Script--%>
 
-                    <div class="form-section form-section--columns">
-                        <div class="form-section--column">
-                            <h4>Adres odbioru:</h4>
-                            <ul>
-                                <li>${street}</li>
-                                <li>${city}</li>
-                                <li>${zipCode}</li>
-                                <li>${phone}</li>
-                            </ul>
-                        </div>
-
-                        <div class="form-section--column">
-                            <h4>Termin odbioru:</h4>
-                            <ul>
-                                <li>${pickUpDate}</li>
-                                <li>${pickUpTime}</li>
-                                <li>${pickUpComment}</li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="form-group form-group--buttons">
@@ -226,7 +187,7 @@
                     <button type="submit" class="btn">Potwierdzam</button>
                 </div>
             </div>
-        </form>
+
         </form:form>
 
     </div>

@@ -8,6 +8,8 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.Set;
 
+import static org.apache.catalina.security.SecurityUtil.remove;
+
 @Entity
 @Table(name = "categories")
 @ToString
@@ -22,15 +24,23 @@ public class Category {
 
     private String name;
 
-    @OneToMany(mappedBy = "category")
+//    @OneToMany(mappedBy = "category")
+    @ManyToMany(mappedBy = "categories")
     @ToString.Exclude
     private Set<Donation> donations;
 
+//    public void removeAllDonations() {
+//        for (Donation donation : donations) {
+//            donation.setCategory(null);
+//        }
+//        donations.clear();
+//    }
+
     public void removeAllDonations() {
-        for (Donation donation : donations) {
-            donation.setCategory(null);
-        }
-        donations.clear();
+    for (Donation donation : donations) {
+        donation.getCategories().remove(this);;
+    }
+    donations.clear();
     }
 
 }

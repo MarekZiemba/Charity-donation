@@ -36,6 +36,8 @@ public class DonationService {
     }
 
     public void deleteById(Long id){
+        Donation donation = donationRepository.findById(Donation.class, id);
+        donation.removeAllCategories();
         donationRepository.deleteById(id);
     }
 
@@ -64,11 +66,11 @@ public class DonationService {
     }
 
     public  List<Donation> findByCategory(Category category) {
-        return donationRepository.findByCategory(category);
+        return donationRepository.findByCategoriesContains(category);
     }
 
     public  List<Donation> findByCategoryName(String name) {
-        return donationRepository.findByCategoryName(name);
+        return donationRepository.findByCategoriesName(name);
     }
 
     public  List<Donation> findByInstitution(Institution institution) {
