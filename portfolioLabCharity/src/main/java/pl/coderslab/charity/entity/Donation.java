@@ -4,7 +4,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashSet;
@@ -24,19 +24,31 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Min(value = 1)
     private int quantity;
 
+    @NotBlank(message = "{not.empty.error}")
+    @Size(min = 2, message = "{too.short.error}")
     private String street;
 
+    @NotBlank(message = "{not.empty.error}")
+    @Size(min = 2, message = "{too.short.error}")
     private String city;
 
+    @NotBlank(message = "{not.empty.error}")
+    @Pattern(regexp = "^\\d{2}-\\d{3}$")
     private String zipCode;
 
+    @NotBlank(message = "{not.empty.error}")
+    @Size(min = 9, message = "{too.short.error}")
     private String phone;
 
+    @FutureOrPresent
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
 
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime pickUpTime;
 
     @Size(max = 2000)

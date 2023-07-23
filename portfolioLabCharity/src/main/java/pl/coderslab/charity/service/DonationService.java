@@ -24,7 +24,7 @@ public class DonationService {
     }
 
     public long totalDonations() {
-        return donationRepository.countAllDonations();
+        return donationRepository.count();
     }
 
     public void save(Donation donation) {

@@ -128,22 +128,39 @@
                     <div class="form-section--column">
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Ulica <form:input type="text" path="street" /> </label>
+                            <label> Ulica <form:input type="text"
+                                                      path="street"
+                                                      placeholder="Ulica i numer domu"
+                                                      pattern="^[A-Za-z]{2}[A-Za-z0-9 -]*$"
+                                                      title="Podaj ulicę i numer domu"/>
+                            </label> />
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Miasto <form:input type="text" path="city" /> </label>
+                            <label> Miasto <form:input type="text" path="city"
+                                                       placeholder="Miasto"
+                                                       pattern="^[A-Za-z]{2}[A-Za-z -]*$"
+                                                       title="Podaj nazwę miasta"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy <form:input type="text" path="zipCode" />
+                                Kod pocztowy <form:input type="text"
+                                                         path="zipCode"
+                                                         placeholder="Kod pocztowy"
+                                                         pattern="\d{2}-\d{3}"
+                                                         title="Podaj kod pocztowy"
+                            />
                             </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <form:input type="phone" path="phone" />
+                                Numer telefonu <form:input type="phone"
+                                                           path="phone"
+                                                           placeholder="Numer telefonu"
+                                                           pattern="^(?:(?:\+?48)?(?:\s|-)?(?:\(?\d{2,3}\)?(?:\s|-)?)?)?(?:(?:\d{3})(?:\s|-)?(?:\d{2})(?:\s|-)?(?:\d{2})|(?:\d{2})(?:\s|-)?(?:\d{3})(?:\s|-)?(?:\d{2})|(?:\d{2})(?:\s|-)?(?:\d{2})(?:\s|-)?(?:\d{3}))$"
+                                                           title="Wprowadź numer telefonu z lub bez kierunkowego '48'"/>
                             </label>
                         </div>
                     </div>
@@ -151,17 +168,29 @@
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <form:input type="date" path="pickUpDate" /> </label>
+                            <label> Data <form:input type="date"
+                                                     path="pickUpDate"
+                                                     placeholder="[yyyy-MM-dd]"
+                                                     pattern="\d{4}-\d{2}-\d{2}"
+                                                     title="Wprowadź datę w formacie yyyy-MM-DD"/>
+                            </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <form:input type="time" path="pickUpTime" /> </label>
+                            <label> Godzina <form:input type="time"
+                                                        path="pickUpTime"
+                                                        placeholder="[hh:mm]"
+                                                        pattern="\d{2}:\d{2}"
+                                                        title="Wprowadź czas w formacie hh:mm"/>
+                            </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
-                                <form:textarea path="pickUpComment" rows="5" />
+                                <form:textarea path="pickUpComment" rows="5"
+                                               placeholder="Jeśli chcesz, możesz wprowadzić komentarz."
+                                               title="Pole nieobowiązkowe"/>
                             </label>
                         </div>
                     </div>

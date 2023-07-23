@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Controller
+@RequestMapping(path = "/donations")
 public class DonationController {
 
     private final DonationService donationService;
@@ -30,24 +31,25 @@ public class DonationController {
               @RequestParam int quantity,
               @RequestParam String street,
               @RequestParam String city,
+              @RequestParam String zipCode,
+              @RequestParam String phone,
               @RequestParam String pickUpComment,
               @RequestParam String institutionName,
               @RequestParam("categoryId") Long[] categoryId){
 //              @RequestParam String categoryName) {
 
-//        Donation.builder()
-//                .quantity(quantity)
-//                .street(street)
-//                .build();
+        Donation.builder()
+                .pickUpTime(pickUpTime)
+                .pickUpDate(pickUpDate)
+                .quantity(quantity)
+                .street(street)
+                .city(city)
+                .zipCode(zipCode)
+                .phone(phone)
+                .pickUpComment(pickUpComment)
+                .build();
 
         final Donation donation = new Donation();
-
-        donation.setQuantity(quantity);
-        donation.setStreet(street);
-        donation.setCity(city);
-        donation.setPickUpDate(pickUpDate);
-        donation.setPickUpTime(pickUpTime);
-        donation.setPickUpComment(pickUpComment);
 
         Set<Category> categories = Arrays.stream(categoryId)
                 .map(id -> new Category())
