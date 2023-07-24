@@ -50,7 +50,7 @@ public class RegistrationFormController {
 
         // Tworzenie obiektu User na podstawie UserRegistrationDTO i zapis do bazy danych
         User user = new User();
-        user.setEmail(userDTO.getUsername());
+        user.setEmail(userDTO.getEmail());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         List<String> validationFailures = validate(user);
         if(validationFailures.isEmpty()){

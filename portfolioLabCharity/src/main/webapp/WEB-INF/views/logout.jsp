@@ -5,26 +5,25 @@
 <html lang="pl">
 <head>
     <title>Login form</title>
-<%--    <link rel="stylesheet" href="<c:url value="/css/style.css"/>"/>--%>
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 <div class="sub-container">
     <p>Login form</p>
-<%--    <sec:authorize access="${param.error == 'disabled'}">--%>
-<%--        <p>${errorMessage}</p>--%>
-<%--    </sec:authorize>--%>
     <form method="post" action="login">
-        Email: <label>
-        <input type="text" name="email" placeholder="Podaj email">
+        Username: <label>
+        <input type="text" name="email">
     </label>
-        Hasło: <label>
-        <input type="password" name="password" placeholder="Podaj hasło">
+        Password: <label>
+        <input type="password" name="password">
     </label>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <sec:csrfInput/>
         <input type="submit" value="Zaloguj" class="button">
     </form>
+    <a href="<c:url value='/login'/>" class="button">Login</a>
     <a href="<c:url value='/register'/>" class="button">Register</a>
+
 </div>
 </body>
 </html>
