@@ -25,7 +25,7 @@ public class DonationController {
     private final InstitutionService institutionService;
     private final CategoryService categoryService;
 
-    @PostMapping(path = "/donations")
+    @PostMapping(path = "/")
     void save(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate pickUpDate,
               @RequestParam LocalTime pickUpTime,
               @RequestParam int quantity,
@@ -64,51 +64,51 @@ public class DonationController {
         donationService.save(donation);
     }
 
-    @GetMapping(path = "/donations", produces = "text/plain;charset=utf-8")
+    @GetMapping(path = "/", produces = "text/plain;charset=utf-8")
     String findAll() {
         final List<Donation> donations = donationService.findAll();
         return donations.toString();
     }
 
-    @GetMapping(path = "/donations/DateAndTime", produces = "text/plain;charset=utf-8")
+    @GetMapping(path = "/DateAndTime", produces = "text/plain;charset=utf-8")
     String findByDateAndTime(@RequestParam("pickUpDate") LocalDate pickUpDate,
                              @RequestParam("pickUpTime") LocalTime pickUpTime) {
         final List<Donation> donations = donationService.findByPickUpDateAndPickupTimeOrderByPickupTime(pickUpDate, pickUpTime);
         return donations.toString();
     }
 
-    @GetMapping(path = "/donations/DateAndTimeBetween", produces = "text/plain;charset=utf-8")
+    @GetMapping(path = "/DateAndTimeBetween", produces = "text/plain;charset=utf-8")
     String findByDateBetween(@RequestParam("pickUpDate") LocalDate pickUpDate1,
                              @RequestParam("pickUpTime") LocalDate pickUpDate2) {
         final List<Donation> donations = donationService.findByPickUpDateBetweenOrderByPickUpDate(pickUpDate1, pickUpDate2);
         return donations.toString();
     }
 
-    @GetMapping(path = "/donations/institution", produces = "text/plain;charset=utf-8", params = "id")
+    @GetMapping(path = "/institution", produces = "text/plain;charset=utf-8", params = "id")
     String findByInstitution(Institution institution) {
         final List<Donation> donations = donationService.findByInstitution(institution);
         return donations.toString();
     }
 
-    @GetMapping(path = "/donations/institution", produces = "text/plain;charset=utf-8", params = {"firstName", "lastName"})
+    @GetMapping(path = "/institution", produces = "text/plain;charset=utf-8", params = {"firstName", "lastName"})
     String findByInstitutionFullName(@RequestParam("name") String name) {
         final List<Donation> donations = donationService.findByInstitutionName(name);
         return donations.toString();
     }
 
-    @GetMapping(path = "/donations/category", produces = "text/plain;charset=utf-8", params = "id")
+    @GetMapping(path = "/category", produces = "text/plain;charset=utf-8", params = "id")
     String findByCategory(Category category) {
         final List<Donation> donations = donationService.findByCategory(category);
         return donations.toString();
     }
 
-    @GetMapping(path = "/donations/category", produces = "text/plain;charset=utf-8", params = "name")
+    @GetMapping(path = "/category", produces = "text/plain;charset=utf-8", params = "name")
     String findByCategoryByName(@RequestParam("name") String name) {
         final List<Donation> donations = donationService.findByCategoryName(name);
         return donations.toString();
     }
 
-    @DeleteMapping(path = "/donations/{id}")
+    @DeleteMapping(path = "/{id}")
     void deleteById(@PathVariable Long id) {
         donationService.deleteById(id);
     }

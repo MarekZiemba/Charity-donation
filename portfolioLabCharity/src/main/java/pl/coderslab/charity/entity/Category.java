@@ -5,10 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Set;
-
-import static org.apache.catalina.security.SecurityUtil.remove;
 
 @Entity
 @Table(name = "categories")

@@ -2,9 +2,8 @@ package pl.coderslab.charity.entity;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashSet;

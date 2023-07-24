@@ -5,8 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity

@@ -1,5 +1,6 @@
 package pl.coderslab.charity.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +13,6 @@ import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.service.CategoryService;
 import pl.coderslab.charity.service.InstitutionService;
 import pl.coderslab.charity.service.DonationService;
-
-
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -28,12 +26,12 @@ public class DonationFormController {
     // wyswietlenie formularza
     @GetMapping(path = "/form")
     String showForm(Model model) {
-//        List<Donation> donations = donationService.findAll();
+
         List<Category> categories = categoryService.findAll();
         List<Institution> institutions = institutionService.findAll();
         model.addAttribute("categories", categories);
         model.addAttribute("institutions", institutions);
-//        model.addAttribute("donations", donations);
+
         model.addAttribute("donations", new Donation());
 
         return "form";

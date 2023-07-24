@@ -213,6 +213,8 @@
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <sec:csrfInput/>
                     <button type="submit" class="btn">Potwierdzam</button>
                 </div>
             </div>
