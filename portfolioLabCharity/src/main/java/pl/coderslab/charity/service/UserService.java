@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.charity.entity.*;
 import pl.coderslab.charity.repository.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -52,14 +54,22 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-
-
     public  List<User> findByRoles(Role role) {
         return userRepository.findByRoles(role);
     }
 
     public  List<User> findByRoleName(String name) {
         return userRepository.findByRolesName(name);
+    }
+
+    public User getLoggedUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails) principal).getUsername();
+            User user = userRepository.findByUsername(username).orElse(null);
+            return user;
+        }
+        return null;
     }
 
 }

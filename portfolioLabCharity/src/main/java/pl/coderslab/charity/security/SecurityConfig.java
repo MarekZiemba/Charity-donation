@@ -4,6 +4,7 @@ import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,6 +24,7 @@ public class SecurityConfig {
         );
         http
                 .authorizeHttpRequests((requests) -> requests
+                                .requestMatchers("/admin/**", "/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/form").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers("/",
                                         "/index",
@@ -39,6 +41,7 @@ public class SecurityConfig {
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/admin/panel", true)
                 .failureUrl("/login?error=disabled")
                 .permitAll()
                 )
