@@ -19,7 +19,7 @@ public class RegistrationController {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @GetMapping(path = "/register", produces = "text/plain;charset=utf-8")
+    @GetMapping(path = "/registration", produces = "text/plain;charset=utf-8")
     public User registerUser(@RequestParam String email,
                              @RequestParam String password) throws ValidationException {
         User user = new User();

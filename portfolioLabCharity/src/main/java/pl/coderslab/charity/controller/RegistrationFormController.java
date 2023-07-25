@@ -49,9 +49,15 @@ public class RegistrationFormController {
             return "register";
         }
 
-//        if userRepository.findUserByEmail(userDTO.getEmail()).isPresent() {
-//            //zwroc blad
-//        }
+        if (userRepository.findUserByEmail(userDTO.getEmail()).isPresent()) {
+            bindingResult.rejectValue("email", "error.user", "Podany email jest już zarejestrowany");
+            return "register";
+        }
+
+        if (userRepository.findByUsername(userDTO.getUsername()).isPresent()) {
+            bindingResult.rejectValue("username", "error.user", "Podany username jest już zajęty");
+            return "register";
+        }
 
         // Tworzenie obiektu User na podstawie UserRegistrationDTO i zapis do bazy danych
         User user = new User();

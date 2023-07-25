@@ -56,13 +56,6 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-//    public User(String email, String password, String firstName, String lastName) {
-//        this.email = email;
-//        this.password = password;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//    }
-
     public void removeRoles() {
         for (Role role: roles) {
             role.getUsers();
