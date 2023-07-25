@@ -26,7 +26,7 @@ insert into donations_categories(donations_id, categories_id) VALUES (15,2);
 
 insert into roles(id, name) values (1, 'ROLE_ADMIN'), (2, 'ROLE_USER');
 
-insert into users(id, email, password, firstName, lastName, dateOfBirth, profilePhotoUrl, enabled) values (1, 'jan@gmail.com', '$2a$10$Z3mQIfuULB46cLMzBfjEaOrtu5aMw9E5DH5sSk1iQoSkKOkri0oze', 'Jan', 'Kowalski', timestamp '1990-01-01', 'www.demo.pl/foto.jpg', true), (2, 'anna@gmail.com', '$2a$10$Z3mQIfuULB46cLMzBfjEaOrtu5aMw9E5DH5sSk1iQoSkKOkri0oze', 'Anna', 'Nowak', timestamp '2000-01-01', 'brak', true);
+insert into users(id, username, password, email, firstName, lastName, dateOfBirth, profilePhotoUrl, enabled) values (1, 'jan@gmail.com', '$2a$10$Z3mQIfuULB46cLMzBfjEaOrtu5aMw9E5DH5sSk1iQoSkKOkri0oze', 'jan@gmail.com', 'Jan', 'Kowalski', '1990-01-01', 'www.demo.pl/foto.jpg', true), (2, 'anna@gmail.com', '$2a$10$Z3mQIfuULB46cLMzBfjEaOrtu5aMw9E5DH5sSk1iQoSkKOkri0oze', 'anna@gmail.com','Anna', 'Nowak', '2000-01-01', 'brak', true);
 
 insert into users_roles(roles_id, users_id) values (1, 1);
 insert into users_roles(roles_id, users_id) values (2, 2);

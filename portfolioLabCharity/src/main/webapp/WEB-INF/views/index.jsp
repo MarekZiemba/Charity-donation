@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@ include file="header.jsp" %>
 
@@ -60,7 +61,7 @@
         </div>
     </div>
 
-    <a href="#" class="btn btn--large">Załóż konto</a>
+    <a href="<c:url value='/register'/>" class="btn btn--large">Załóż konto</a>
 </section>
 
 <section class="about-us">
@@ -101,6 +102,5 @@
     </div>
 
 </section>
-
 
 <%@ include file="footer.jsp" %>

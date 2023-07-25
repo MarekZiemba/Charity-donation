@@ -1,14 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <title>Login form</title>
-        <link rel="stylesheet" type="text/css" href="/css/style.css">
-</head>
-<body>
-<div class="sub-container">
+
+<%@ include file="header.jsp" %>
+
+<div class="slogan container container--90">
     <p>Login form</p>
     <form method="post" action="login">
         Username: <label>
@@ -25,5 +23,5 @@
     <a href="<c:url value='/register'/>" class="button">Register</a>
 
 </div>
-</body>
-</html>
+
+<%@ include file="footer.jsp" %>

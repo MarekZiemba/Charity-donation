@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.security.UserRegistrationDTO;
 import pl.coderslab.charity.security.ValidationException;
@@ -48,27 +49,32 @@ public class RegistrationFormController {
             return "register";
         }
 
+//        if userRepository.findUserByEmail(userDTO.getEmail()).isPresent() {
+//            //zwroc blad
+//        }
+
         // Tworzenie obiektu User na podstawie UserRegistrationDTO i zapis do bazy danych
         User user = new User();
-        user.setEmail(userDTO.getEmail());
+        user.setUsername(userDTO.getUsername());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        List<String> validationFailures = validate(user);
-        if(validationFailures.isEmpty()){
+        user.setEmail(userDTO.getEmail());
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+//        List<String> validationFailures = validate(user);
+//        if(validationFailures.isEmpty()){
             userRepository.save(user);
             return "redirect:/login";
-        } else {
-            throw new ValidationException(validationFailures);
-        }
-
-
+//        } else {
+//            throw new ValidationException(validationFailures);
+//        }
     }
 
-    private List<String> validate(User user) {
-        Optional<User> byUser = userRepository.findUserByEmail(user.getEmail());
-        if(byUser.isPresent()){
-            return Arrays.asList("emailAlreadyExists");
-        }
-        return Collections.emptyList();
-    }
+//    private List<String> validate(User user) {
+//        Optional<User> byUser = userRepository.findUserByEmail(user.getEmail());
+//        if(byUser.isPresent()){
+//            return Arrays.asList("emailAlreadyExists");
+//        }
+//        return Collections.emptyList();
+//    }
 
 }

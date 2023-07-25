@@ -23,7 +23,7 @@ public class RegistrationController {
     public User registerUser(@RequestParam String email,
                              @RequestParam String password) throws ValidationException {
         User user = new User();
-        user.setEmail(email);
+        user.setUsername(email);
         user.setPassword(passwordEncoder.encode(password));
 
         List<String> validationFailures = validate(user);
@@ -34,7 +34,7 @@ public class RegistrationController {
         }
     }
     private List<String> validate(User user) {
-        Optional<User> byUser = userRepository.findUserByEmail(user.getEmail());
+        Optional<User> byUser = userRepository.findByUsername(user.getUsername());
         if(byUser.isPresent()){
             return Arrays.asList("emailAlreadyExists");
         }

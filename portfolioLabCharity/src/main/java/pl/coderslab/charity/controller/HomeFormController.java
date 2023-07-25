@@ -27,15 +27,11 @@ public class HomeFormController {
         // Suma wartości liczbowych pola "quantity"
         int totalQuantity = donationService.totalQuantity();
         model.addAttribute("totalQuantity", totalQuantity);
-//        int totalQuantity = donationRepository.findAll()
-//                .stream()
-//                .mapToInt(Donation::getQuantity)
-//                .sum();
+
 
         // Suma wszystkich donations (liczba wpisów)
         long totalDonations = donationService.totalDonations();
         model.addAttribute("totalDonations", totalDonations);
-//        long totalDonations = donationRepository.count();
 
         // Pobierz listę instytucji z serwisu InstitutionService
         List<Institution> institutions = institutionService.findAll();

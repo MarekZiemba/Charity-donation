@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ include file="header.jsp" %>
@@ -133,7 +134,7 @@
                                                       placeholder="Ulica i numer domu"
                                                       pattern="^[A-Za-z]{2}[A-Za-z0-9 -]*$"
                                                       title="Podaj ulicę i numer domu"/>
-                            </label> />
+                            </label>
                         </div>
 
                         <div class="form-group form-group--inline">

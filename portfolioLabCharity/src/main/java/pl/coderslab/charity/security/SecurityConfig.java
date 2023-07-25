@@ -23,14 +23,16 @@ public class SecurityConfig {
         );
         http
                 .authorizeHttpRequests((requests) -> requests
+                                .requestMatchers("/form").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers("/",
                                         "/index",
-                                        "/form").hasAnyRole("USER", "ADMIN")
-                                .requestMatchers("/login",
-                                "/logout",
-                                "/register",
-                                "/error",
-                                "403").permitAll()
+                                        "/login",
+                                        "/logout",
+                                        "/register",
+                                        "/error",
+                                        "/css/**",
+                                        "/js/**",
+                                        "/images/**").permitAll()
                 .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form

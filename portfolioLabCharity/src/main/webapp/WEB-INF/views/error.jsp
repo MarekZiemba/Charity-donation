@@ -8,11 +8,12 @@
 
 <div class="slogan container container--90">
     <h2>
-        Dziękujemy za przesłanie formularza Na maila prześlemy wszelkie
-        informacje o odbiorze.
+        <p>Nie masz wystarczających uprawnień do wyświetlenia tego widoku.</p>
+        <p>Skontaktuj się z administratorem systemu w celu uzyskania dostępu.</p>
     </h2>
 
 </div>
+<a href="<c:url value='/index'/>" class="button" class="btn next-step">Powrót na stronę główną</a>
 </header>
 
 <%@ include file="footer.jsp" %>

@@ -1,5 +1,6 @@
 package pl.coderslab.charity.security;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -16,11 +17,24 @@ public class UserRegistrationDTO {
 
     @NotBlank(message = "{not.empty.error}")
     @Size(min = 2, message = "{too.short.error}")
-    private String email;
+    private String username;
+
 
     @NotBlank(message = "{not.empty.error}")
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$", message = "{password.invalid.error}")
     private  String password;
 
     private String confirmPassword;
+
+    @Email
+    private String email;
+
+    @NotBlank(message = "{not.empty.error}")
+    @Size(min = 2, message = "{too.short.error}")
+    private String firstName;
+
+    @NotBlank(message = "{not.empty.error}")
+    @Size(min = 2, message = "{too.short.error}")
+    private String lastName;
+
 }
