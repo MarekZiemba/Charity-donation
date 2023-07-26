@@ -1,6 +1,8 @@
 package pl.coderslab.charity.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.charity.entity.Institution;
@@ -14,6 +16,10 @@ import java.util.List;
 public class InstitutionService {
     
     public final InstitutionRepository institutionRepository;
+
+    public Page<Institution> findAll(Pageable pageable) {
+        return institutionRepository.findAll(pageable);
+    }
 
     public void save(Institution institution) {
         institutionRepository.save(institution);
@@ -29,6 +35,10 @@ public class InstitutionService {
 
     public List<Institution> findAll() {
         return institutionRepository.findAll();
+    }
+
+    public List<Institution> findRandomInstitutions() {
+        return institutionRepository.findRandomInstitutions();
     }
 
     public Institution findById(Long id) {

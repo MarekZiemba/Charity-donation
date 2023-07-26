@@ -9,9 +9,9 @@
 <div class="slogan container container--90">
     <div class="slogan--item">
         <h1>
-            Panel administratora
+            Panel użytkownika
         </h1>
-        <h2>Lista Użytkowników</h2>
+        <h2>Zobacz swoje dane</h2>
     </div>
 </div>
 </header>
@@ -36,22 +36,24 @@
             <th>Zdjęcie profilowe</th>
             <th>Edycja</th>
         </tr>
-
-            <tr>
-                <td style="font-size: x-large">${user.username}</td>
-                <td>${user.email}</td>
-                <td>${user.firstName}</td>
-                <td>${user.lastName}</td>
-                <td>${user.dateOfBirth}</td>
-                <td>${user.profilePhotoUrl}</td>
-                <td>
-                    <a href="<c:url value='/user/edit?id=${user.id}'/>" class="btn btn--small">Edytuj</a>
-                </td>
-            </tr>
-
+        <tr>
+            <td style="font-size: x-large">${user.username}</td>
+            <td>${user.email}</td>
+            <td>${user.firstName}</td>
+            <td>${user.lastName}</td>
+            <td>${user.dateOfBirth}</td>
+            <td>${user.profilePhotoUrl}</td>
+            <td>
+                <a href="<c:url value='/user/edit?id=${user.id}'/>" class="btn btn--small">Edytuj</a>
+            </td>
+        </tr>
     </table>
 </div>
-
+<div class="form--steps-container">
+    <div class="help--slides active" data-id="1">
+        <h2></h2>
+    </div>
+</div>
 <section class="form--steps">
     <div class="form--steps-instructions">
         <div class="form--steps-container">

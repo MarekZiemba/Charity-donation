@@ -1,36 +1,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<%@ include file="../../header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 <div class="slogan container container--90">
-
     <div class="slogan--item">
         <h1>
-            Panel administratora
+            Panel użytkownika
         </h1>
-        <h2>Edycja użytkownika</h2>
+        <h2>Zmień dane</h2>
     </div>
-
 </div>
-</header>
 
 <div class="form--steps-container">
-    <a href="<c:url value='/admin/panel'/>" class="btn btn--without-border">Panel Administratora</a>
-    <a href="<c:url value='/admin/user/add'/>" class="btn btn--without-border">Dodaj użytkownika</a>
-    <a href="<c:url value='/admin/user/search'/>" class="btn btn--without-border">Wyszukaj</a>
-    <a href="<c:url value='/admin/user/list'/>" class="btn btn--without-border">Lista Użytkowników</a>
+    <a href="<c:url value='/admin/user/list'/>" class="btn btn--without-border">Mój profil</a>
 </div>
 <br>
 <br>
 <br>
 <section class="help">
     <div class="help--slides active" data-id="1">
-        <h2>Zmień dane Użytkownika</h2>
+        <h2>Zmień swoje dane</h2>
     </div>
     <div class="help--slides active" data-id="1">
         <form:form method="post" modelAttribute="user">
@@ -73,7 +66,11 @@
         </form:form>
     </div>
 </section>
-
+<div class="form--steps-container">
+    <div class="help--slides active" data-id="1">
+        <h2></h2>
+    </div>
+</div>
 <section class="form--steps">
     <div class="form--steps-instructions">
         <div class="form--steps-container">
@@ -85,4 +82,4 @@
     </div>
 </section>
 
-<%@ include file="../../footer.jsp" %>
+<%@ include file="../footer.jsp" %>

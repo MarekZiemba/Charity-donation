@@ -4,7 +4,6 @@ import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,9 +23,16 @@ public class SecurityConfig {
         );
         http
                 .authorizeHttpRequests((requests) -> requests
-                                .requestMatchers("/admin/**", "/admin/**").hasRole("ADMIN")
-                                .requestMatchers("/form", "/user/**").hasAnyRole("USER", "ADMIN")
-                                .requestMatchers("/",
+                                .requestMatchers(
+                                        "/admin/**",
+                                        "/admin/**")
+                                .hasRole("ADMIN")
+                                .requestMatchers(
+                                        "/form",
+                                        "/user/**")
+                                .hasAnyRole("USER", "ADMIN")
+                                .requestMatchers(
+                                        "/",
                                         "/index",
                                         "/login",
                                         "/logout",
@@ -34,14 +40,14 @@ public class SecurityConfig {
                                         "/error",
                                         "/css/**",
                                         "/js/**",
-                                        "/images/**").permitAll()
+                                        "/images/**")
+                                .permitAll()
                 .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/")
-                .defaultSuccessUrl("/admin/panel", true)
                 .failureUrl("/login?error=disabled")
                 .permitAll()
                 )

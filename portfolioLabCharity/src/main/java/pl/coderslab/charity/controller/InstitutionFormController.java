@@ -2,6 +2,9 @@ package pl.coderslab.charity.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -58,8 +61,11 @@ public class InstitutionFormController {
     }
 
     @GetMapping(path = "/admin/institution/list")
-    String showInstitutionList(Model model) {
-        List<Institution> institutions = institutionService.findAll();
+    String showInstitutionList(@RequestParam(defaultValue = "0") int page,
+                               @RequestParam(defaultValue = "20") int size,
+                               Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Institution> institutions = institutionService.findAll(pageable);
         model.addAttribute("institutions", institutions);
         return "admin/institution/list";
     }

@@ -17,14 +17,3 @@ public class PanelFormController {
 }
 
 
-//    private final UserService userService;
-//
-//    @GetMapping(path = "/admin/panel")
-//    String showForm(Model model) {
-//        User loggedUser = userService.getLoggedUser();
-//        if (loggedUser != null && loggedUser.getRoles().stream().anyMatch(role -> role.getName().equals("ADMIN"))) {
-//            return "admin/panel";
-//        } else {
-//            return "redirect:/";
-//        }
-//    }

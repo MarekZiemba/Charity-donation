@@ -1,8 +1,5 @@
 package pl.coderslab.charity.security;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -49,7 +46,7 @@ public class UserRegistrationDTO {
 
     private String profilePhotoUrl;
 
-    private String enabled; // czy tak jest ok? potem parsuję przy zapisie w UserFormController
+    private Boolean enabled; // czy tak jest ok? potem parsuję przy zapisie w UserFormController
 
     private Set<Role> roles;
 

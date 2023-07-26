@@ -1,6 +1,8 @@
 package pl.coderslab.charity.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.charity.entity.*;
@@ -26,6 +28,10 @@ public class UserService {
             return Arrays.asList("usernameAlreadyExists");
         }
         return Collections.emptyList();
+    }
+
+    public Page<User> findAll(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 
     public void save(User user) {

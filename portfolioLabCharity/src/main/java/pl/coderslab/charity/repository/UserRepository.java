@@ -23,10 +23,8 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     List<User> findUserByEmailContains(String email);
 
-    @Override
     List<User> findAll();
 
-    @Override
     Optional<User> findById(Long id);
 
     List<User> findByFirstNameContainsAndLastNameContains(String firstName, String lastName);

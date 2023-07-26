@@ -34,7 +34,7 @@ public class HomeFormController {
         model.addAttribute("totalDonations", totalDonations);
 
         // Pobierz listę instytucji z serwisu InstitutionService
-        List<Institution> institutions = institutionService.findAll();
+        List<Institution> institutions = institutionService.findRandomInstitutions();
         model.addAttribute("institutions", institutions);
 
         return "index";
