@@ -1,5 +1,6 @@
 package pl.coderslab.charity.repository;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,16 +14,22 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
 
+    Optional<User> findByUsername(String username);
+
+    List<User> findByUsernameContains(String username);
+
     @Query("SELECT u FROM User u WHERE u.email = :email")
     Optional<User> findUserByEmail(@Param("email") String email);
 
-    Optional<User> findByUsername(String email);
+    List<User> findUserByEmailContains(String email);
 
     @Override
     List<User> findAll();
 
     @Override
     Optional<User> findById(Long id);
+
+    List<User> findByFirstNameContainsAndLastNameContains(String firstName, String lastName);
 
     List<User> findByRoles(@Param("roles") Role roles);
 

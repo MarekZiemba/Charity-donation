@@ -54,6 +54,18 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
+    public List<User> findByUsernameContains(String username) {
+        return userRepository.findByUsernameContains(username);
+    }
+
+    public Optional<User> findUserByEmail(String email) {return userRepository.findUserByEmail(email);}
+
+    public List<User> findUserByEmailContains(String email) {return userRepository.findUserByEmailContains(email);}
+
+    public List<User> findByFirstNameAndLastName(String firstName, String lastName) {
+        return userRepository.findByFirstNameContainsAndLastNameContains(firstName, lastName);
+    }
+
     public  List<User> findByRoles(Role role) {
         return userRepository.findByRoles(role);
     }
