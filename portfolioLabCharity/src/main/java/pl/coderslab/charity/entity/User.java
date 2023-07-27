@@ -22,14 +22,12 @@ public class User {
     private long id;
 
     @NotBlank(message = "{not.empty.error}")
-//    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
+
     @Column(nullable = false, unique = true, length = 60)
     private String username;
 
     @NotBlank(message = "{not.empty.error}")
     @Size(min = 2, message = "{too.short.error}")
-//    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$",
-//            message = "{password.invalid.error}")
     private String password;
 
     @Email
@@ -50,7 +48,6 @@ public class User {
     @Column(nullable = false)
     private boolean enabled;
 
-//    @ManyToMany(fetch = FetchType.LAZY)
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 

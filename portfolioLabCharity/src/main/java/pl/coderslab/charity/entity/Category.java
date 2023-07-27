@@ -27,13 +27,6 @@ public class Category {
     @ToString.Exclude
     private Set<Donation> donations;
 
-//    public void removeAllDonations() {
-//        for (Donation donation : donations) {
-//            donation.setCategory(null);
-//        }
-//        donations.clear();
-//    }
-
     public void removeAllDonations() {
     for (Donation donation : donations) {
         donation.getCategories().remove(this);;

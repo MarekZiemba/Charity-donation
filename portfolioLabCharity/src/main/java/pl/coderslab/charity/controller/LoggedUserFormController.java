@@ -32,21 +32,6 @@ public class LoggedUserFormController {
         return "user/edit";
     }
 
-    //    @PostMapping(path = "/admin/user/edit")
-//    String processEditUserForm(@Valid User user, BindingResult bindingResult, @RequestParam String newPassword) {
-//        if (bindingResult.hasErrors()) {
-//            return "user/edit";
-//        }
-//        // Jeśli podano nowe hasło, zaktualizuj je w encji użytkownika
-//        if (!newPassword.isEmpty()) {
-//            user.setPassword(passwordEncoder.encode(newPassword));
-//        }
-//        // Usuń pole newPassword przed zapisem do bazy danych
-//        user.setNewPassword(null);
-//
-//        userService.update(user);
-//        return "redirect:/admin/user/list";
-//    }
     @PostMapping(path = "/user/edit")
     String processEditUserForm(@Valid UserRegistrationDTO userDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -55,10 +40,11 @@ public class LoggedUserFormController {
         User user = userService.findById(userDTO.getId());
         if (user == null) {
             // Obsługa błędu, gdy użytkownik o podanym ID nie został znaleziony
-            // ...
+            return "user/list";
         }
 
         // Aktualizuj dane użytkownika na podstawie danych z UserRegistrationDTO
+        user.setPassword(userDTO.getConfirmPassword());
         user.setEmail(userDTO.getEmail());
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());

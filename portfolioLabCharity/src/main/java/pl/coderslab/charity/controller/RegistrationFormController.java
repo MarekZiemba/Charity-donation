@@ -66,21 +66,9 @@ public class RegistrationFormController {
         user.setEmail(userDTO.getEmail());
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
-//        List<String> validationFailures = validate(user);
-//        if(validationFailures.isEmpty()){
             userRepository.save(user);
             return "redirect:/login";
-//        } else {
-//            throw new ValidationException(validationFailures);
-//        }
     }
 
-//    private List<String> validate(User user) {
-//        Optional<User> byUser = userRepository.findUserByEmail(user.getEmail());
-//        if(byUser.isPresent()){
-//            return Arrays.asList("emailAlreadyExists");
-//        }
-//        return Collections.emptyList();
-//    }
 
 }

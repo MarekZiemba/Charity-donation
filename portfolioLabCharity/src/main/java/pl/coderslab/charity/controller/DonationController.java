@@ -3,9 +3,7 @@ package pl.coderslab.charity.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.entity.*;
 import pl.coderslab.charity.service.*;
 
@@ -23,7 +21,6 @@ public class DonationController {
 
     private final DonationService donationService;
     private final InstitutionService institutionService;
-    private final CategoryService categoryService;
 
     @PostMapping(path = "/")
     void save(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate pickUpDate,
@@ -36,7 +33,6 @@ public class DonationController {
               @RequestParam String pickUpComment,
               @RequestParam String institutionName,
               @RequestParam("categoryId") Long[] categoryId){
-//              @RequestParam String categoryName) {
 
         Donation.builder()
                 .pickUpTime(pickUpTime)

@@ -1,6 +1,8 @@
 package pl.coderslab.charity.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.charity.entity.Category;
@@ -18,6 +20,10 @@ import java.util.List;
 public class DonationService {
 
     public final DonationRepository donationRepository;
+
+    public Page<Donation> findAll(Pageable pageable) {
+        return donationRepository.findAll(pageable);
+    }
 
     public int totalQuantity() {
         return donationRepository.sumAllQuantities();

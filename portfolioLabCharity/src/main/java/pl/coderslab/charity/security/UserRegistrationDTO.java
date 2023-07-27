@@ -22,11 +22,13 @@ public class UserRegistrationDTO {
     private Long id;
 
     @NotBlank(message = "{not.empty.error}")
+    //    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
     @Size(min = 2, message = "{too.short.error}")
     private String username;
 
     @NotBlank(message = "{not.empty.error}")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$", message = "{password.invalid.error}")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$",
+            message = "{password.invalid.error}")
     private  String password;
 
     private String confirmPassword;

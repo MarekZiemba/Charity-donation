@@ -38,21 +38,6 @@ public class UserFormController {
         return "admin/user/add";
     }
 
-    // obsluga formularza dodawania użytkownika
-//    @PostMapping(path = "/admin/user/add")
-//    String processAddUserForm(@Valid User user, BindingResult bindingResult, @RequestParam String newPassword) {
-//        if (bindingResult.hasErrors()) {
-//            return "user/add";
-//        }
-//        // Jeśli podano nowe hasło, zaktualizuj je w encji użytkownika
-//        if (!newPassword.isEmpty()) {
-//            user.setPassword(passwordEncoder.encode(newPassword));
-//        }
-//        // Usuń pole newPassword przed zapisem do bazy danych
-//        user.setNewPassword(null);
-//        userService.save(user);
-//        return "redirect:/admin/user/list";
-//    }
     @PostMapping(path = "/admin/user/add")
     String processAddUserForm(@Valid UserRegistrationDTO userDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -80,21 +65,6 @@ public class UserFormController {
         return "admin/user/edit";
     }
 
-//    @PostMapping(path = "/admin/user/edit")
-//    String processEditUserForm(@Valid User user, BindingResult bindingResult, @RequestParam String newPassword) {
-//        if (bindingResult.hasErrors()) {
-//            return "user/edit";
-//        }
-//        // Jeśli podano nowe hasło, zaktualizuj je w encji użytkownika
-//        if (!newPassword.isEmpty()) {
-//            user.setPassword(passwordEncoder.encode(newPassword));
-//        }
-//        // Usuń pole newPassword przed zapisem do bazy danych
-//        user.setNewPassword(null);
-//
-//        userService.update(user);
-//        return "redirect:/admin/user/list";
-//    }
 @PostMapping(path = "/admin/user/edit")
 String processEditUserForm(@Valid UserRegistrationDTO userDTO, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {

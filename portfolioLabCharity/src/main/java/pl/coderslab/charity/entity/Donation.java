@@ -53,16 +53,10 @@ public class Donation {
     @Size(max = 2000)
     private String pickUpComment;
 
-//    @ManyToOne
-////    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "category_id")
-//    private Category category;
-
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Category> categories = new HashSet<>();
 
     @ManyToOne
-//    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "institution_id")
     private Institution institution;
 
