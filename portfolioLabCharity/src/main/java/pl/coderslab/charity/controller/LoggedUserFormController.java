@@ -52,8 +52,8 @@ public class LoggedUserFormController {
         user.setProfilePhotoUrl(userDTO.getProfilePhotoUrl());
 
         // Jeśli podano nowe hasło, zaktualizuj je w encji użytkownika
-        if (!userDTO.getPassword().isEmpty()) {
-            user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        if (!userDTO.getNewPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(userDTO.getNewPassword()));
         }
 
         userService.update(user);

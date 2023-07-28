@@ -45,7 +45,7 @@ public class UserFormController {
         }
         User user = User.builder()
                 .username(userDTO.getUsername())
-                .password(passwordEncoder.encode(userDTO.getPassword()))
+                .password(passwordEncoder.encode(userDTO.getNewPassword()))
                 .email(userDTO.getEmail())
                 .firstName(userDTO.getFirstName())
                 .lastName(userDTO.getLastName())
@@ -82,9 +82,15 @@ String processEditUserForm(@Valid UserRegistrationDTO userDTO, BindingResult bin
     user.setFirstName(userDTO.getFirstName());
     user.setLastName(userDTO.getLastName());
 
-    // Jeśli podano nowe hasło, zaktualizuj je w encji użytkownika
-    if (!userDTO.getPassword().isEmpty()) {
-        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+//    // Jeśli podano nowe hasło, zaktualizuj je w encji użytkownika
+//    if (!userDTO.getPassword().isEmpty()) {
+//        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+//    }
+
+    // Sprawdź, czy nowe hasło zostało podane i czy potwierdzenie nowego hasła jest zgodne
+    if (!userDTO.getNewPassword().isEmpty() && userDTO.getNewPassword().equals(userDTO.getConfirmPassword())) {
+        // Jeśli hasło zostało podane i potwierdzenie jest zgodne, zaktualizuj hasło w encji użytkownika
+        user.setPassword(passwordEncoder.encode(userDTO.getNewPassword()));
     }
 
     userService.update(user);

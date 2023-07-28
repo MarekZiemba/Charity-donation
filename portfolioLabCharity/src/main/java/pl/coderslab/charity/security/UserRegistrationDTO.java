@@ -26,10 +26,12 @@ public class UserRegistrationDTO {
     @Size(min = 2, message = "{too.short.error}")
     private String username;
 
-    @NotBlank(message = "{not.empty.error}")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$",
-            message = "{password.invalid.error}")
-    private  String password;
+//    @NotBlank(message = "{not.empty.error}")
+//    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$",
+//            message = "{password.invalid.error}")
+//    private  String password;
+
+    private String newPassword;
 
     private String confirmPassword;
 
@@ -48,7 +50,7 @@ public class UserRegistrationDTO {
 
     private String profilePhotoUrl;
 
-    private Boolean enabled; // czy tak jest ok? potem parsuję przy zapisie w UserFormController
+    private Boolean enabled;
 
     private Set<Role> roles;
 

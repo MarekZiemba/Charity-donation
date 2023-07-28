@@ -43,7 +43,7 @@ public class RegistrationFormController {
         }
 
         // Sprawdzenie, czy hasło i powtórzone hasło są zgodne
-        if (!userDTO.getPassword().equals(userDTO.getConfirmPassword())) {
+        if (!userDTO.getNewPassword().equals(userDTO.getConfirmPassword())) {
             bindingResult.rejectValue("confirmPassword", "error.user",
                     "Hasło i powtórzone hasło nie zgadzają się");
             return "register";
@@ -62,7 +62,7 @@ public class RegistrationFormController {
         // Tworzenie obiektu User na podstawie UserRegistrationDTO i zapis do bazy danych
         User user = new User();
         user.setUsername(userDTO.getUsername());
-        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        user.setPassword(passwordEncoder.encode(userDTO.getNewPassword()));
         user.setEmail(userDTO.getEmail());
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());

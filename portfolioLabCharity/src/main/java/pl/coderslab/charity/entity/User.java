@@ -26,9 +26,13 @@ public class User {
     @Column(nullable = false, unique = true, length = 60)
     private String username;
 
-    @NotBlank(message = "{not.empty.error}")
-    @Size(min = 2, message = "{too.short.error}")
+//    @NotBlank(message = "{not.empty.error}")
+//    @Size(min = 2, message = "{too.short.error}")
     private String password;
+
+    private String newPassword;
+
+    private String confirmPassword;
 
     @Email
     private String email;
