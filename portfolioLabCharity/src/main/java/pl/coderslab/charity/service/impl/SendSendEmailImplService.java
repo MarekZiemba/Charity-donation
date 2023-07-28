@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pl.coderslab.charity.service.SendEmailService;
 
+import java.util.Objects;
+
 @Service
 public class SendSendEmailImplService implements SendEmailService {
 
@@ -32,10 +34,10 @@ public class SendSendEmailImplService implements SendEmailService {
             mimeMessageHelper.setSubject(subject);
             mimeMessageHelper.setText(body);
 
-            for(int i = 0; i<file.length; i++) {
+            for (MultipartFile multipartFile : file) {
                 mimeMessageHelper.addAttachment(
-                        file[i].getOriginalFilename(),
-                        new ByteArrayResource(file[i].getBytes())
+                        Objects.requireNonNull(multipartFile.getOriginalFilename()),
+                        new ByteArrayResource(multipartFile.getBytes())
                 );
             }
 

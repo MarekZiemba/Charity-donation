@@ -52,7 +52,7 @@ public class User {
     @Column(nullable = false)
     private boolean enabled;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER) // ma zadzialac LAZY
     private Set<Role> roles;
 
     public void removeRoles() {
