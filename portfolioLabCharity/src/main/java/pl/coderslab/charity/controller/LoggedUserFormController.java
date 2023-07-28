@@ -51,8 +51,14 @@ public class LoggedUserFormController {
         user.setDateOfBirth(userDTO.getDateOfBirth());
         user.setProfilePhotoUrl(userDTO.getProfilePhotoUrl());
 
-        // Jeśli podano nowe hasło, zaktualizuj je w encji użytkownika
-        if (!userDTO.getNewPassword().isEmpty()) {
+//        // Jeśli podano nowe hasło, zaktualizuj je w encji użytkownika
+//        if (!userDTO.getNewPassword().isEmpty()) {
+//            user.setPassword(passwordEncoder.encode(userDTO.getNewPassword()));
+//        }
+
+        // Sprawdź, czy nowe hasło zostało podane i czy potwierdzenie nowego hasła jest zgodne
+        if (!userDTO.getNewPassword().isEmpty() && userDTO.getNewPassword().equals(userDTO.getConfirmPassword())) {
+            // Jeśli hasło zostało podane i potwierdzenie jest zgodne, zaktualizuj hasło w encji użytkownika
             user.setPassword(passwordEncoder.encode(userDTO.getNewPassword()));
         }
 

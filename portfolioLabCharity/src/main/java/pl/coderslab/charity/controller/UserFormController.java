@@ -73,7 +73,7 @@ String processEditUserForm(@Valid UserRegistrationDTO userDTO, BindingResult bin
     User user = userService.findById(userDTO.getId());
     if (user == null) {
         // Obsługa błędu, gdy użytkownik o podanym ID nie został znaleziony
-        // ...
+        return "user/list";
     }
 
     // Aktualizuj dane użytkownika na podstawie danych z UserRegistrationDTO

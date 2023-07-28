@@ -32,10 +32,20 @@
                 <form:input path="username" id="username" placeholder="Podaj nazwę użytkownika"/>
                 <form:errors path="username" cssClass="error"/>
             </div>
+<%--            <div class="form-group">--%>
+<%--                <label for="password" title="Podaj hasło"><p>Hasło:</p></label>--%>
+<%--                <form:input path="password" id="password" placeholder="Podaj hasło"/>--%>
+<%--                <form:errors path="password" cssClass="error"/>--%>
+<%--            </div>--%>
             <div class="form-group">
-                <label for="password" title="Podaj hasło"><p>Hasło:</p></label>
-                <form:input path="password" id="password" placeholder="Podaj hasło"/>
-                <form:errors path="password" cssClass="error"/>
+                <label for="newPassword" title="Nowe hasło"><p>Nowe Hasło:</p></label>
+                <form:input path="newPassword" id="newPassword" placeholder="Nowe hasło"/>
+                <form:errors path="newPassword" cssClass="error"/>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword" title="Potwierdź nowe hasło"><p>Potwierdź Nowe Hasło:</p></label>
+                <form:input path="confirmPassword" id="confirmPassword" placeholder="Potwierdź nowe hasło"/>
+                <form:errors path="confirmPassword" cssClass="error"/>
             </div>
             <div class="form-group">
                 <label for="email" title="Podaj e-mail"><p>E-mail:</p></label>
