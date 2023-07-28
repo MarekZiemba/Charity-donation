@@ -1,5 +1,8 @@
 package pl.coderslab.charity.service.impl;
 
+import lombok.RequiredArgsConstructor;
+import pl.coderslab.charity.service.SendEmailService;
+
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,18 +11,18 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import pl.coderslab.charity.service.SendEmailService;
 
 import java.util.Objects;
 
 @Service
-public class SendSendEmailImplService implements SendEmailService {
+@RequiredArgsConstructor
+public class SendEmailImplService implements SendEmailService {
 
     @Value("${spring.mail.username}")
     private String fromEmail;
 
     @Autowired
-    private JavaMailSender javaMailSender;
+    private final JavaMailSender javaMailSender;
 
     @Override
     public String sendMail(MultipartFile[] file, String to, String[] cc, String subject, String body) {
@@ -37,17 +40,16 @@ public class SendSendEmailImplService implements SendEmailService {
             for (MultipartFile multipartFile : file) {
                 mimeMessageHelper.addAttachment(
                         Objects.requireNonNull(multipartFile.getOriginalFilename()),
-                        new ByteArrayResource(multipartFile.getBytes())
-                );
-            }
+                        new ByteArrayResource(multipartFile.getBytes()));
+            } // wysylanie pliku jeszcze do poprawy
 
             javaMailSender.send(mimeMessage);
 
-            return  "mail send";
+            return "mail send";
 
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
+
 }

@@ -4,6 +4,7 @@ import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -40,9 +41,10 @@ public class SecurityConfig {
                                         "/error",
                                         "/css/**",
                                         "/js/**",
-                                        "/images/**",
-                                        "/send/mail/**")
+                                        "/images/**")
+//                                        "/send/mail")
                                 .permitAll()
+                                .requestMatchers(HttpMethod.POST).permitAll().requestMatchers("/send/mail").permitAll()
                 .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
@@ -54,6 +56,7 @@ public class SecurityConfig {
                 )
                 .logout((logout) -> logout.logoutUrl("/logout").logoutSuccessUrl("/login")
                         .invalidateHttpSession(true).deleteCookies("JSESSIONID").permitAll());
+//                .csrf().disable();
 
         return http.build();
     }
