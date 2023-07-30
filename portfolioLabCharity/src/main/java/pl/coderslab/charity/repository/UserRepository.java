@@ -35,4 +35,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     User findById(Class<User> userClass, Long id);
 
+    User findByActivationToken(String token);
+
 }

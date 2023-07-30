@@ -52,4 +52,26 @@ public class SendEmailImplService implements SendEmailService {
         }
     }
 
+    @Override
+    public String sendActivationMail(String to, String subject, String body) {
+        try {
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+
+            mimeMessageHelper.setFrom(fromEmail);
+            mimeMessageHelper.setTo(to);
+            mimeMessageHelper.setSubject(subject);
+            mimeMessageHelper.setText(body, true); // Ustawienie flagi na true dla wysyłania treści jako HTML
+
+
+            javaMailSender.send(mimeMessage);
+
+            return "mail send";
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

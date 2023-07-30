@@ -13,8 +13,8 @@
             <form:errors path="username" cssClass="error"/>
         </div>
         <div class="form-group">
-            <form:input type="password" path="password" id="password" placeholder="Podaj hasło"/>
-            <form:errors path="password" cssClass="error"/>
+            <form:input type="newPassword" path="newPassword" id="newPassword" placeholder="Podaj hasło"/>
+            <form:errors path="newPassword" cssClass="error"/>
         </div>
         <div class="form-group">
             <form:input type="password" path="confirmPassword" id="confirmPassword" placeholder="Powtórz hasło"/>
@@ -34,6 +34,10 @@
         </div>
         <div class="form-group">
             Hasło musi mieć minimum 8 znaków, przynajmniej 1 mała i dużą litere, cyfrę i znak specjalny
+        </div>
+
+        <div class="form-group">
+            Po zatwierszeniu danych, na podany email zostanie wysłany kod aktywacyjny.
         </div>
         <div class="form-group form-group--buttons">
             <a href="/login" class="btn btn--without-border">Zaloguj się</a>

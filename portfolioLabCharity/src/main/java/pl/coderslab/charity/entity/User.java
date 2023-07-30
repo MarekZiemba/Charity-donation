@@ -52,6 +52,8 @@ public class User {
     @Column(nullable = false)
     private boolean enabled;
 
+    private String activationToken;
+
     @ManyToMany(fetch = FetchType.EAGER) // ma zadzialac LAZY
     private Set<Role> roles;
 
