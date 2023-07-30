@@ -41,8 +41,8 @@ public class SecurityConfig {
                                         "/error",
                                         "/css/**",
                                         "/js/**",
-                                        "/images/**")
-//                                        "/send/mail")
+                                        "/images/**",
+                                        "/send/mail")
                                 .permitAll()
                                 .requestMatchers(HttpMethod.POST).permitAll().requestMatchers("/send/mail").permitAll()
                 .anyRequest().authenticated()

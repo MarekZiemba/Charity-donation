@@ -70,5 +70,4 @@ public class RegistrationFormController {
             return "redirect:/login";
     }
 
-
 }

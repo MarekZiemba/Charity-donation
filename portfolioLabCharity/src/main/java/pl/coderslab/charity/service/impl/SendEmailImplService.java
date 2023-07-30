@@ -41,7 +41,7 @@ public class SendEmailImplService implements SendEmailService {
                 mimeMessageHelper.addAttachment(
                         Objects.requireNonNull(multipartFile.getOriginalFilename()),
                         new ByteArrayResource(multipartFile.getBytes()));
-            } // wysylanie pliku jeszcze do poprawy
+            }
 
             javaMailSender.send(mimeMessage);
 
