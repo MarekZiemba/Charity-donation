@@ -70,6 +70,9 @@ public class UserService {
         return userRepository.findByRolesName(name);
     }
 
+    public Optional<User> findUserByResetToken(String resetToken) {return userRepository.findByResetToken(resetToken);
+    }
+
     // getLoggedUserWithRoles()
     public User getLoggedUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -79,4 +82,5 @@ public class UserService {
         }
         return null;
     }
+
 }

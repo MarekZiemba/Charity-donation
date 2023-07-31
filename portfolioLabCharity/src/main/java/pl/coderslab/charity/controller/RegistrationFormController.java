@@ -46,18 +46,23 @@ public class RegistrationFormController {
 
         // Sprawdzenie, czy hasło i powtórzone hasło są zgodne
         if (!userDTO.getNewPassword().equals(userDTO.getConfirmPassword())) {
-            bindingResult.rejectValue("confirmPassword", "error.user",
+            bindingResult.rejectValue("confirmPassword",
+                    "error.user",
                     "Hasło i powtórzone hasło nie zgadzają się");
             return "register";
         }
 
         if (userRepository.findUserByEmail(userDTO.getEmail()).isPresent()) {
-            bindingResult.rejectValue("email", "error.user", "Podany email jest już zarejestrowany");
+            bindingResult.rejectValue("email",
+                    "error.user",
+                    "Podany email jest już zarejestrowany");
             return "register";
         }
 
         if (userRepository.findByUsername(userDTO.getUsername()).isPresent()) {
-            bindingResult.rejectValue("username", "error.user", "Podany username jest już zajęty");
+            bindingResult.rejectValue("username",
+                    "error.user",
+                    "Podany username jest już zajęty");
             return "register";
         }
 
@@ -75,7 +80,9 @@ public class RegistrationFormController {
 
         // Wysyłanie emaila z linkiem aktywacyjnym
         String activationLink = env.getProperty("app.baseurl") + "/activate?token=" + user.getActivationToken();
-        String emailBody = "Witaj " + user.getFirstName() + ",\n\nKliknij poniższy link, aby aktywować swoje konto:\n\n <a href='" + activationLink + "'> Kliknij tutaj</a>";
+        String emailBody = "Witaj " + user.getFirstName() +
+                ",\n\nKliknij poniższy link, aby aktywować swoje konto:\n\n <a href='" +
+                activationLink + "'> Kliknij tutaj</a>";
         sendEmailService.sendActivationMail(user.getEmail(), "Aktywacja konta", emailBody);
 
 

@@ -54,6 +54,8 @@ public class User {
 
     private String activationToken;
 
+    private String resetToken;
+
     @ManyToMany
     private Set<Role> roles;
 

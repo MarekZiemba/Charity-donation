@@ -43,9 +43,12 @@ public class SecurityConfig {
                                         "/js/**",
                                         "/images/**",
                                         "/send/mail",
-                                        "activate",
+                                        "/activate",
                                         "/accountActivated",
-                                        "activationFailed")
+                                        "/activationFailed",
+                                        "/resetPassword",
+                                        "/resetPasswordConfirm",
+                                        "/resetPasswordSuccess")
                                 .permitAll()
                                 .requestMatchers(HttpMethod.POST).permitAll().requestMatchers("/send/mail").permitAll()
                 .anyRequest().authenticated()

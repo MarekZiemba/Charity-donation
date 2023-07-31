@@ -5,25 +5,20 @@
 
 <%@ include file="header.jsp" %>
 
-<section class="login-page">
-    <h2>Zaloguj się</h2>
-    <sec:authorize access="${param.error == 'disabled'}">
-        <p>${errorMessage}</p>
-    </sec:authorize>
-    <form method="post" action="login">
+<section class="reset-password-confirm-page">
+    <h2>Zmiana hasła</h2>
+    <form method="post" action="/resetPasswordConfirm">
+        <input type="hidden" name="token" value="${resetToken}" />
         <div class="form-group">
-            <input type="text" name="username" placeholder="Nazwa użytkownika" />
+            <input type="password" name="password" placeholder="Nowe hasło" />
         </div>
         <div class="form-group">
-            <input type="password" name="password" placeholder="Hasło" />
-            <a href="/resetPassword" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
+            <input type="password" name="confirmPassword" placeholder="Potwierdź nowe hasło" />
         </div>
-
         <div class="form-group form-group--buttons">
-            <a href="/register" class="btn btn--without-border">Załóż konto</a>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <sec:csrfInput/>
-            <button class="btn" type="submit">Zaloguj się</button>
+            <button class="btn" type="submit">Zmień hasło</button>
         </div>
     </form>
 </section>

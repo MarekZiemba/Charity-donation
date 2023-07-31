@@ -19,6 +19,8 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     User findByActivationToken(String token);
 
+    Optional<User> findByResetToken(String resetToken);
+
     List<User> findByUsernameContains(String username);
 
     @Query("SELECT u FROM User u WHERE u.email = :email")
