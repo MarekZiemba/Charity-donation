@@ -1,6 +1,5 @@
 package pl.coderslab.charity.repository;
 
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,7 +13,11 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
 
-    Optional<User> findByUsername(String username);
+    //with Roles
+    @Query("SELECT u FROM User u LEFT JOIN FETCH u.roles WHERE u.username = :username")
+    Optional<User> findByUsername(@Param("username") String username);
+
+    User findByActivationToken(String token);
 
     List<User> findByUsernameContains(String username);
 
@@ -34,7 +37,5 @@ public interface UserRepository extends JpaRepository<User,Long> {
     List<User> findByRolesName(String name);
 
     User findById(Class<User> userClass, Long id);
-
-    User findByActivationToken(String token);
 
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import pl.coderslab.charity.entity.User;
-import pl.coderslab.charity.security.UserRegistrationDTO;
+import pl.coderslab.charity.security.UserRegistrationDto;
 import pl.coderslab.charity.security.ValidationException;
 import pl.coderslab.charity.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,13 +32,13 @@ public class RegistrationFormController {
     // wyświetlenie formularza rejestracji użytkownika
     @GetMapping(path = "/register")
     public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new UserRegistrationDTO());
+        model.addAttribute("user", new UserRegistrationDto());
         return "register";
     }
 
     // obsługa formularza rejestracji użytkownika
     @PostMapping(path = "/register")
-    public String processRegistrationForm(@ModelAttribute("user") @Valid UserRegistrationDTO userDTO,
+    public String processRegistrationForm(@ModelAttribute("user") @Valid UserRegistrationDto userDTO,
                                           BindingResult bindingResult) throws ValidationException {
         if (bindingResult.hasErrors()) {
             return "register";
@@ -75,7 +75,7 @@ public class RegistrationFormController {
 
         // Wysyłanie emaila z linkiem aktywacyjnym
         String activationLink = env.getProperty("app.baseurl") + "/activate?token=" + user.getActivationToken();
-        String emailBody = "Witaj " + user.getFirstName() + ",\n\nKliknij poniższy link, aby aktywować swoje konto:\n\n" + activationLink;
+        String emailBody = "Witaj " + user.getFirstName() + ",\n\nKliknij poniższy link, aby aktywować swoje konto:\n\n <a href='" + activationLink + "'> Kliknij tutaj</a>";
         sendEmailService.sendActivationMail(user.getEmail(), "Aktywacja konta", emailBody);
 
 

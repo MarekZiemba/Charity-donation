@@ -10,8 +10,6 @@ import pl.coderslab.charity.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,14 +19,6 @@ import java.util.Optional;
 public class UserService {
 
     public final UserRepository userRepository;
-
-    private List<String> validate(User user) {
-        Optional<User> byUser = userRepository.findByUsername(user.getUsername());
-        if(byUser.isPresent()){
-            return Arrays.asList("usernameAlreadyExists");
-        }
-        return Collections.emptyList();
-    }
 
     public Page<User> findAll(Pageable pageable) {
         return userRepository.findAll(pageable);
@@ -80,14 +70,13 @@ public class UserService {
         return userRepository.findByRolesName(name);
     }
 
+    // getLoggedUserWithRoles()
     public User getLoggedUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             String username = ((UserDetails) principal).getUsername();
-            User user = userRepository.findByUsername(username).orElse(null);
-            return user;
+            return userRepository.findByUsername(username).orElse(null);
         }
         return null;
     }
-
 }

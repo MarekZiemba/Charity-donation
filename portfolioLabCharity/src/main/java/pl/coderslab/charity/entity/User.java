@@ -54,7 +54,7 @@ public class User {
 
     private String activationToken;
 
-    @ManyToMany(fetch = FetchType.EAGER) // ma zadzialac LAZY
+    @ManyToMany
     private Set<Role> roles;
 
     public void removeRoles() {

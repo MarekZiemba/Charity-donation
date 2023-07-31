@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.entity.User;
-import pl.coderslab.charity.security.UserRegistrationDTO;
+import pl.coderslab.charity.security.UserRegistrationDto;
 import pl.coderslab.charity.service.RoleService;
 import pl.coderslab.charity.service.UserService;
 
@@ -39,7 +39,7 @@ public class UserFormController {
     }
 
     @PostMapping(path = "/admin/user/add")
-    String processAddUserForm(@Valid UserRegistrationDTO userDTO, BindingResult bindingResult) {
+    String processAddUserForm(@Valid UserRegistrationDto userDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "admin/user/add";
         }
@@ -66,13 +66,12 @@ public class UserFormController {
     }
 
 @PostMapping(path = "/admin/user/edit")
-String processEditUserForm(@Valid UserRegistrationDTO userDTO, BindingResult bindingResult) {
+String processEditUserForm(@Valid UserRegistrationDto userDTO, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
         return "admin/user/edit";
     }
     User user = userService.findById(userDTO.getId());
     if (user == null) {
-        // Obsługa błędu, gdy użytkownik o podanym ID nie został znaleziony
         return "user/list";
     }
 
@@ -81,11 +80,6 @@ String processEditUserForm(@Valid UserRegistrationDTO userDTO, BindingResult bin
     user.setEmail(userDTO.getEmail());
     user.setFirstName(userDTO.getFirstName());
     user.setLastName(userDTO.getLastName());
-
-//    // Jeśli podano nowe hasło, zaktualizuj je w encji użytkownika
-//    if (!userDTO.getPassword().isEmpty()) {
-//        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-//    }
 
     // Sprawdź, czy nowe hasło zostało podane i czy potwierdzenie nowego hasła jest zgodne
     if (!userDTO.getNewPassword().isEmpty() && userDTO.getNewPassword().equals(userDTO.getConfirmPassword())) {

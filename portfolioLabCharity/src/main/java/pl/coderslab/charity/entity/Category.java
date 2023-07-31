@@ -22,7 +22,6 @@ public class Category {
 
     private String name;
 
-//    @OneToMany(mappedBy = "category")
     @ManyToMany(mappedBy = "categories")
     @ToString.Exclude
     private Set<Donation> donations;

@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.entity.User;
-import pl.coderslab.charity.security.UserRegistrationDTO;
+import pl.coderslab.charity.security.UserRegistrationDto;
 import pl.coderslab.charity.service.RoleService;
 import pl.coderslab.charity.service.UserService;
 
 import java.util.Collection;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -33,7 +32,7 @@ public class LoggedUserFormController {
     }
 
     @PostMapping(path = "/user/edit")
-    String processEditUserForm(@Valid UserRegistrationDTO userDTO, BindingResult bindingResult) {
+    String processEditUserForm(@Valid UserRegistrationDto userDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "user/edit";
         }
@@ -50,11 +49,6 @@ public class LoggedUserFormController {
         user.setLastName(userDTO.getLastName());
         user.setDateOfBirth(userDTO.getDateOfBirth());
         user.setProfilePhotoUrl(userDTO.getProfilePhotoUrl());
-
-//        // Jeśli podano nowe hasło, zaktualizuj je w encji użytkownika
-//        if (!userDTO.getNewPassword().isEmpty()) {
-//            user.setPassword(passwordEncoder.encode(userDTO.getNewPassword()));
-//        }
 
         // Sprawdź, czy nowe hasło zostało podane i czy potwierdzenie nowego hasła jest zgodne
         if (!userDTO.getNewPassword().isEmpty() && userDTO.getNewPassword().equals(userDTO.getConfirmPassword())) {

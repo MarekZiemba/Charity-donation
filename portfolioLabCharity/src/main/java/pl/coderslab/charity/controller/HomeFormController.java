@@ -18,10 +18,6 @@ public class HomeFormController {
     private final InstitutionService institutionService;
     private final DonationService donationService;
 
-//    public DonationController(DonationRepository donationRepository) {
-//        this.donationRepository = donationRepository;
-//    }
-
     @GetMapping("/")
     public String showSummary(Model model) {
         // Suma wartości liczbowych pola "quantity"

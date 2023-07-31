@@ -1,8 +1,5 @@
 package pl.coderslab.charity.repository;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,12 +17,9 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
     @Query("SELECT SUM(d.quantity) FROM Donation d")
     int sumAllQuantities();
 
-//    @Query("SELECT COUNT(d) FROM Donation d")
-//    long countAllDonations();
     long count();
 
     @Override
-//    @EntityGraph(attributePaths = {"category", "institution"})
     List<Donation> findAll();
 
     @Override
